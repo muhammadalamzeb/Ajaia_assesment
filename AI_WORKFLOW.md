@@ -29,7 +29,7 @@
 | Session-based auth | **Rejected** → JWT for SPA simplicity |
 | Enterprise RBAC | **Rejected** → owner/view/edit is sufficient |
 | `.docx` via mammoth | **Rejected** → `.txt`/`.md` with clear UI limits |
-| WebSocket collab stub | **Rejected** → version history + auto-save instead |
+| WebSocket collab stub | **Rejected** → version history + manual save instead |
 | Generic error banners | **Modified** → toast notification system |
 | `scheduleSave` in useEditor onUpdate | **Fixed** → ref-based pattern to avoid stale closure bug |
 | View-only not enforced on PUT | **Fixed** → server returns 403 (AI missed this edge case) |

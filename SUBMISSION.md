@@ -10,7 +10,7 @@
 
 | Item | URL |
 |---|---|
-| **Live App** | _[Paste after Render/Docker deploy]_ |
+| **Live App** | https://ajaia-docs-production-f404.up.railway.app/ |
 | **Google Drive** | _[Paste folder link]_ |
 | **Walkthrough Video** | _[Paste in VIDEO_URL.txt]_ |
 
@@ -47,8 +47,7 @@ carol@ajaia.dev / password123  (sharing tests)
 - [x] Bold, italic, underline
 - [x] Headings (H1, H2, H3)
 - [x] Bulleted and numbered lists
-- [x] Auto-save with status indicator
-- [x] Ctrl+S manual save
+- [x] Manual save (Save button + Ctrl+S) with status indicator
 
 ### 2. File Upload ✅
 
@@ -87,7 +86,7 @@ carol@ajaia.dev / password123  (sharing tests)
 
 - [x] **Real-time collaboration indicators** — presence bar with live viewer avatars
 - [x] **Commenting / suggestion mode** — comments panel, accept/reject suggestions
-- [x] **Document version history** — auto snapshots + restore
+- [x] **Document version history** — snapshots on save + restore
 - [x] **Export PDF + Markdown** — export dropdown
 - [x] **Role-based sharing** — edit / comment / view permissions
 

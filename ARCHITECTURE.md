@@ -44,9 +44,9 @@ Zero external dependencies for reviewers. WAL mode for concurrent reads. Single-
 
 Sharing requires identity. OAuth/signup adds scope without demonstrating more judgment. Three demo accounts let reviewers test sharing in under 60 seconds.
 
-### Auto-Save + Version History
+### Manual Save + Version History
 
-1-second debounced save feels modern. Each save creates a `document_versions` row (capped at 20 per doc). Stretch goal delivered without WebSocket complexity.
+Explicit **Save** button and Ctrl+S persist changes. Each save creates a `document_versions` row (capped at 20 per doc).
 
 ### Markdown Import/Export
 
@@ -141,7 +141,7 @@ document_presence (document_id, user_id, last_seen)
 | Priority | Delivered | Deferred |
 |---|---|---|
 | P0 | Editor, CRUD, persistence, sharing | — |
-| P1 | Import, auto-save, owned/shared UI | — |
+| P1 | Import, manual save, owned/shared UI | — |
 | P1.5 | View-only enforcement, search | — |
 | P2 (stretch) | Version history, Markdown export | — |
 | P3 | — | Real-time collab, .docx, PDF, comments |

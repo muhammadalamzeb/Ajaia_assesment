@@ -43,7 +43,7 @@ export default function Login({ onLogin }) {
             documents with rich formatting.
           </p>
           <ul className="hero-features">
-            <li>Rich-text editing with auto-save</li>
+            <li>Rich-text editing with manual save</li>
             <li>Share with edit, comment, or view permissions</li>
             <li>Comments, suggestions, version history, PDF export</li>
           </ul>

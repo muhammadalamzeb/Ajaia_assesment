@@ -29,9 +29,8 @@
    - H1, H2 headings
    - Bullet and numbered lists
 3. Rename the document title
-4. Show auto-save indicator ("Saved")
-5. Press **Ctrl+S** to force save
-6. Refresh the page → content persists with formatting
+4. Click **Save** (or Ctrl+S) → show "Saved" status
+5. Refresh the page → content persists with formatting
 
 ---
 

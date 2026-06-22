@@ -51,8 +51,8 @@
 | Bold, italic, underline | ✅ Toolbar |
 | Headings H1–H3 | ✅ |
 | Bullet & numbered lists | ✅ |
-| Rename (title field) | ✅ Auto-save |
-| Auto-save + Ctrl+S | ✅ Status indicator |
+| Rename (title field) | ✅ Manual save |
+| Save button + Ctrl+S | ✅ Status indicator |
 | Paper-style editor layout | ✅ Polished UI |
 | Word count | ✅ Footer |
 
@@ -135,7 +135,7 @@
 ### Deferred (with reason)
 | Cut | Reason |
 |---|---|
-| Real-time OT sync | High complexity; auto-save + presence covers collaboration story |
+| Real-time OT sync | High complexity; manual save + presence covers collaboration story |
 | `.docx` | Heavy dependency; `.md`/`.txt` sufficient for demo |
 | Commenting | Timebox; sharing permissions deliver access-control story |
 | PDF export | Markdown export chosen as lighter stretch |
@@ -183,7 +183,7 @@
 |---|---|---|
 | **Real-time collaboration indicators** | `PresenceBar` — polls every 12s, shows avatars | Open same doc as Alice + Bob in two browsers |
 | **Commenting / suggestion mode** | `CommentsPanel` — comments + suggestions, accept applies text | Bob suggests edit → Alice accepts |
-| **Document version history** | `VersionPanel` — auto-save snapshots, restore | History → Restore |
+| **Document version history** | `VersionPanel` — snapshots on save, restore | History → Restore |
 | **Export PDF or Markdown** | `ExportMenu` — server-side PDF via PDFKit | Export ▾ → PDF |
 | **Role-based sharing** | `edit` / `comment` / `view` in Share modal | Share Carol as "Can comment" |
 

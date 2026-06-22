@@ -34,12 +34,15 @@ export default function DocumentEditor({ docId, user, onUpdated, onError }) {
   const [wordCount, setWordCount] = useState(0);
   const [dragOver, setDragOver] = useState(false);
 
-  const saveTimer = useRef(null);
   const fileRef = useRef(null);
   const contentLoaded = useRef(false);
   const titleRef = useRef('');
-  const scheduleSaveRef = useRef(() => {});
   const { addToast } = useToast();
+
+  const editorRef = useRef(null);
+  const docRef = useRef(null);
+  titleRef.current = title;
+  docRef.current = doc;
 
   const saveDocument = useCallback(async () => {
     if (!editorRef.current || !docRef.current) return;
@@ -51,24 +54,13 @@ export default function DocumentEditor({ docId, user, onUpdated, onError }) {
       });
       setSaveStatus('saved');
       onUpdated();
+      addToast('Document saved', 'success');
     } catch (err) {
       setSaveStatus('error');
       onError(err.message);
       addToast(err.message, 'error');
     }
   }, [docId, onUpdated, onError, addToast]);
-
-  const scheduleSave = useCallback(() => {
-    if (saveTimer.current) clearTimeout(saveTimer.current);
-    saveTimer.current = setTimeout(() => saveDocument(), 1000);
-  }, [saveDocument]);
-
-  scheduleSaveRef.current = scheduleSave;
-
-  const editorRef = useRef(null);
-  const docRef = useRef(null);
-  titleRef.current = title;
-  docRef.current = doc;
 
   const editor = useEditor({
     extensions: [
@@ -84,7 +76,6 @@ export default function DocumentEditor({ docId, user, onUpdated, onError }) {
       if (!contentLoaded.current) return;
       setWordCount(countWords(ed));
       setSaveStatus('unsaved');
-      scheduleSaveRef.current();
     },
     onSelectionUpdate: ({ editor: ed }) => {
       const { from, to } = ed.state.selection;
@@ -116,6 +107,7 @@ export default function DocumentEditor({ docId, user, onUpdated, onError }) {
           contentLoaded.current = true;
         });
       }
+      setSaveStatus('saved');
     } catch (err) {
       onError(err.message);
       addToast(err.message, 'error');
@@ -126,9 +118,6 @@ export default function DocumentEditor({ docId, user, onUpdated, onError }) {
 
   useEffect(() => {
     loadDocument();
-    return () => {
-      if (saveTimer.current) clearTimeout(saveTimer.current);
-    };
   }, [loadDocument]);
 
   useEffect(() => {
@@ -147,14 +136,12 @@ export default function DocumentEditor({ docId, user, onUpdated, onError }) {
       if (!editor || !canEditDoc(doc?.permission)) return;
       if ((e.ctrlKey || e.metaKey) && e.key === 's') {
         e.preventDefault();
-        if (saveTimer.current) clearTimeout(saveTimer.current);
         saveDocument();
-        addToast('Document saved', 'success');
       }
     };
     window.addEventListener('keydown', onKey);
     return () => window.removeEventListener('keydown', onKey);
-  }, [editor, doc, saveDocument, addToast]);
+  }, [editor, doc, saveDocument]);
 
   useEffect(() => {
     const onBeforeUnload = (e) => {
@@ -171,12 +158,6 @@ export default function DocumentEditor({ docId, user, onUpdated, onError }) {
     setTitle(e.target.value);
     titleRef.current = e.target.value;
     setSaveStatus('unsaved');
-    scheduleSave();
-  };
-
-  const handleTitleBlur = () => {
-    if (saveTimer.current) clearTimeout(saveTimer.current);
-    saveDocument();
   };
 
   const handleImportInto = async (file) => {
@@ -262,7 +243,6 @@ export default function DocumentEditor({ docId, user, onUpdated, onError }) {
             className="title-input"
             value={title}
             onChange={handleTitleChange}
-            onBlur={handleTitleBlur}
             disabled={!canEdit}
             placeholder="Untitled document"
             aria-label="Document title"
@@ -286,6 +266,17 @@ export default function DocumentEditor({ docId, user, onUpdated, onError }) {
             {saveStatus === 'unsaved' && '○ Unsaved changes'}
             {saveStatus === 'error' && '✕ Save failed'}
           </span>
+
+          {canEdit && (
+            <button
+              type="button"
+              onClick={saveDocument}
+              disabled={saveStatus === 'saving'}
+              title="Save (Ctrl+S)"
+            >
+              Save
+            </button>
+          )}
 
           <ExportMenu onExportMd={handleExportMd} onExportPdf={handleExportPdf} />
 
@@ -375,7 +366,7 @@ export default function DocumentEditor({ docId, user, onUpdated, onError }) {
 
       <footer className="editor-footer">
         <span>{wordCount} words</span>
-        <span>Auto-save enabled · Ctrl+S to save now</span>
+        <span>Press Save or Ctrl+S to save changes</span>
       </footer>
 
       {showShare && (

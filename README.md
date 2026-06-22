@@ -4,14 +4,14 @@ A production-quality lightweight collaborative document editor built for the **A
 
 ## Live Demo
 
-**URL:** _Deploy via Render/Docker and paste here_
+**URL:** https://ajaia-docs-production-f404.up.railway.app/
 
 ## What It Does
 
 | Feature | Details |
 |---|---|
 | **Rich-text editing** | Bold, italic, underline, H1–H3, bullet & numbered lists |
-| **Document management** | Create, rename, auto-save, search, delete |
+| **Document management** | Create, rename, manual save, search, delete |
 | **File import** | `.txt` / `.md` — new doc, into draft, or drag-and-drop |
 | **Sharing** | Owner grants **view** or **edit** access by email |
 | **Owned vs shared** | Sidebar sections with clear badges |
