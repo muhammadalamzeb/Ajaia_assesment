@@ -1,0 +1,13 @@
+services:
+  ajaia-docs:
+    build: .
+    ports:
+      - "3001:3001"
+    environment:
+      JWT_SECRET: local-dev-secret-change-me
+      DATABASE_PATH: /app/server/data/ajaia-docs.db
+    volumes:
+      - ajaia-data:/app/server/data
+
+volumes:
+  ajaia-data:

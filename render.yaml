@@ -1,0 +1,13 @@
+services:
+  - type: web
+    name: ajaia-docs
+    runtime: node
+    buildCommand: npm install --prefix server && npm install --prefix client && npm run build --prefix client
+    startCommand: npm start --prefix server
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: JWT_SECRET
+        generateValue: true
+      - key: DATABASE_PATH
+        value: /opt/render/project/src/server/data/ajaia-docs.db

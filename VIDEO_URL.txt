@@ -1,0 +1,2 @@
+PASTE_YOUR_WALKTHROUGH_VIDEO_URL_HERE
+Example: https://youtu.be/xxxxxxxxxxx or https://www.loom.com/share/xxxxxxxxxxx
